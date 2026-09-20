@@ -162,18 +162,20 @@ Tests use an isolated mongodb-memory-server instance and do not use your normal 
 
 ## 🖼️ Screenshots
 
-Add captured UI screenshots under `docs/screenshots/`:
+Add captured UI screenshots under `docs/screenshots/` after production/browser verification:
 
+- `login.png` — login page
 - `dashboard.png` — employee dashboard
-- `audit-logs.png` — God Mode audit log screen
 - `employee-modal.png` — add/edit employee modal
+- `audit-logs.png` — God Mode audit log screen
 
 Example:
 
 ```md
+![Login](docs/screenshots/login.png)
 ![Employee Dashboard](docs/screenshots/dashboard.png)
-![God Mode Audit Logs](docs/screenshots/audit-logs.png)
 ![Add/Edit Employee Modal](docs/screenshots/employee-modal.png)
+![God Mode Audit Logs](docs/screenshots/audit-logs.png)
 ```
 
 ## ☁️ Deployment
@@ -190,11 +192,23 @@ Deploy the Express application as a Render Web Service:
 
 ### Vercel
 
-The current repository serves the frontend from Express `public/`. For a separate Vercel frontend, deploy the `public` directory and configure its API base/rewrite to the Render backend. The current browser code uses relative `/api` requests, so a Vercel/Render split needs that API routing configuration before production use.
+The repository is Vercel-ready for a single-project deployment:
+
+- Static frontend files are served from `public/`.
+- `api/index.js` exposes the existing Express application as a Vercel Node.js serverless function.
+- `vercel.json` rewrites `/api/*` requests to the serverless entrypoint, so the existing frontend can keep using relative `/api` URLs.
+- Configure these Vercel Production environment variables:
+  - `MONGODB_URI` — MongoDB Atlas connection string
+  - `JWT_SECRET` — long random signing secret
+  - `JWT_EXPIRES_IN` — for example `7d`
+  - `CLIENT_ORIGIN` — the final Vercel origin
+- Never commit the real environment values to GitHub.
+
+After deployment, verify `/api/health`, login, employee CRUD, and admin audit-log flows against the production MongoDB Atlas database.
 
 ### Live URL
 
-**Not deployed yet.** Add the Render/Vercel URL here after deployment.
+**Deployment pending.** Add the final Vercel production URL here after a successful deployment and production verification.
 
 ## 🔒 Security Notes
 

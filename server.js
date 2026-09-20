@@ -96,4 +96,6 @@ if (require.main === module) {
   });
 }
 
-module.exports = { app, start, connectDatabase };
+module.exports = app;
+app.start = start;
+app.connectDatabase = connectDatabase;

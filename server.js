@@ -18,6 +18,7 @@ app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors({ origin: process.env.CLIENT_ORIGIN || "*" }));
 app.use(express.json({ limit: "1mb" }));
 app.use(morgan("dev"));
+app.use(express.static("public"));
 
 app.get("/api/health", (req, res) => {
   res.json({ success: true, message: "Employee Management System API is running." });

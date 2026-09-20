@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Read-only employee audit logs">
+  <title>Employee Management System | Audit Logs</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="/dashboard.html"><span class="brand-mark small">EMS</span><span>Employee Management</span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/dashboard.html">Dashboard</a>
+      <a class="active" href="/audit-logs.html">Audit Logs</a>
+    </nav>
+    <div class="nav-user"><span id="user-email" class="user-email"></span><button id="logout-button" class="btn ghost">Logout</button></div>
+  </header>
+  <main class="container">
+    <section class="page-heading"><div><p class="eyebrow">GOD MODE • READ ONLY</p><h1>Audit Logs</h1><p class="muted">Immutable history of employee edits and deletions.</p></div><button id="refresh-logs" class="btn secondary">Refresh</button></section>
+    <section class="card table-card">
+      <div class="table-toolbar"><strong id="log-count">0 logs</strong><span class="muted"> · Admin access</span></div>
+      <div id="logs-error" class="alert error hidden" role="alert"></div>
+      <div class="table-wrap">
+        <table class="audit-table">
+          <thead><tr><th>Action</th><th>Timestamp</th><th>Performed By</th><th>Employee ID</th><th>Previous Data</th></tr></thead>
+          <tbody id="audit-table-body"></tbody>
+        </table>
+      </div>
+      <div id="logs-empty" class="empty-state hidden"><div class="empty-icon">◇</div><h2>No audit logs</h2><p class="muted">No employee edit/delete events have been recorded.</p></div>
+    </section>
+  </main>
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+  <script src="/js/app.js"></script>
+  <script>window.initAuditLogsPage();</script>
+</body>
+</html>

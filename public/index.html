@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ArithMatrix AVIP 2026 Employee Management System">
+  <title>Employee Management System | Login</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="auth-page">
+  <main class="auth-card">
+    <div class="brand-mark">EMS</div>
+    <p class="eyebrow">ARITHMATRIX AVIP 2026</p>
+    <h1>Employee Management</h1>
+    <p class="muted">Sign in to manage employee records securely.</p>
+    <div id="login-error" class="alert error hidden" role="alert"></div>
+    <form id="login-form" novalidate>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="email" placeholder="admin@example.com" required>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+      <button class="btn primary full" type="submit" id="login-button">Login</button>
+    </form>
+    <p class="auth-note">Use an account created through the API or seed script.</p>
+  </main>
+  <script src="/js/app.js"></script>
+  <script>window.initLoginPage();</script>
+</body>
+</html>

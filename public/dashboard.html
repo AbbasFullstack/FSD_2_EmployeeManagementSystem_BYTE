@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Employee Management System dashboard">
+  <title>Employee Management System | Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="/dashboard.html"><span class="brand-mark small">EMS</span><span>Employee Management</span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="active" href="/dashboard.html">Dashboard</a>
+      <a id="audit-link" class="hidden" href="/audit-logs.html">Audit Logs</a>
+    </nav>
+    <div class="nav-user">
+      <span id="user-email" class="user-email"></span>
+      <button id="logout-button" class="btn ghost">Logout</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="page-heading">
+      <div>
+        <p class="eyebrow">CONTROL CENTER</p>
+        <h1>Employees</h1>
+        <p class="muted">Create, review and maintain employee records.</p>
+      </div>
+      <button id="add-employee-button" class="btn primary">+ Add Employee</button>
+    </section>
+
+    <section class="card table-card">
+      <div class="table-toolbar">
+        <div><strong id="employee-count">0 employees</strong><span class="muted"> · Live records</span></div>
+        <button id="refresh-button" class="btn secondary">Refresh</button>
+      </div>
+      <div id="table-error" class="alert error hidden" role="alert"></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Name</th><th>Email</th><th>Department</th><th>Position</th><th>Salary</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="employee-table-body"></tbody>
+        </table>
+      </div>
+      <div id="empty-state" class="empty-state hidden"><div class="empty-icon">◎</div><h2>No employees yet</h2><p class="muted">Add your first employee to get started.</p></div>
+    </section>
+  </main>
+
+  <div id="employee-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-panel">
+      <div class="modal-header"><div><p class="eyebrow">EMPLOYEE RECORD</p><h2 id="modal-title">Add Employee</h2></div><button class="icon-button" data-close-modal aria-label="Close">×</button></div>
+      <form id="employee-form" novalidate>
+        <input type="hidden" id="employee-id">
+        <div class="form-grid">
+          <div><label for="employee-name">Name *</label><input id="employee-name" required maxlength="100"></div>
+          <div><label for="employee-email">Email *</label><input id="employee-email" type="email" required></div>
+          <div><label for="employee-phone">Phone *</label><input id="employee-phone" required></div>
+          <div><label for="employee-department">Department *</label><input id="employee-department" required></div>
+          <div><label for="employee-position">Position *</label><input id="employee-position" required></div>
+          <div><label for="employee-salary">Salary *</label><input id="employee-salary" type="number" min="0.01" step="0.01" required></div>
+          <div><label for="employee-join-date">Join Date *</label><input id="employee-join-date" type="date" required></div>
+          <div><label for="employee-status">Status *</label><select id="employee-status"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
+        </div>
+        <div id="form-error" class="alert error hidden" role="alert"></div>
+        <div class="modal-actions"><button type="button" class="btn secondary" data-close-modal>Cancel</button><button type="submit" class="btn primary" id="save-employee-button">Save Employee</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+  <script src="/js/app.js"></script>
+  <script>window.initDashboardPage();</script>
+</body>
+</html>

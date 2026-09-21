@@ -158,5 +158,5 @@ test("error handling returns 400, 401, 403 and 404", async () => {
 
   const invalidBody = await request(app).post("/api/employees")
     .set("Authorization", "Bearer " + adminToken).send({name:"Incomplete"});
-  assert.equal(invalidBody.status, 400);
+  assert.equal(invalidBody.status, 422);
 });
